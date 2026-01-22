@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Relatórios Mensais • Despacho</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="app.html"><span class="brand__dot"></span>Despacho de Cargas</a>
+      <div class="userline">
+        <span id="userName">—</span>
+        <a class="btn btn--ghost" href="app.html">Cargas</a>
+        <a class="btn btn--ghost" href="transportadoras.html">Transportadoras</a>
+        <button class="btn" id="btnLogout">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="card__hd">
+        <div class="card__title">Relatório mensal</div>
+      </div>
+      <div class="card__bd">
+        <div class="row">
+          <div class="field">
+            <div class="label">Mês</div>
+            <select class="select" id="mes">
+              <option value="0">Janeiro</option>
+              <option value="1">Fevereiro</option>
+              <option value="2">Março</option>
+              <option value="3">Abril</option>
+              <option value="4">Maio</option>
+              <option value="5">Junho</option>
+              <option value="6">Julho</option>
+              <option value="7">Agosto</option>
+              <option value="8">Setembro</option>
+              <option value="9">Outubro</option>
+              <option value="10">Novembro</option>
+              <option value="11">Dezembro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Ano</div>
+            <input class="input" id="ano" type="number" />
+          </div>
+        </div>
+
+        <button class="btn btn--brand" id="btnGerar">Gerar relatório</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card__bd">
+        <div class="kpi" id="kpis"></div>
+        <div style="height:12px"></div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Transportadora</th>
+              <th>Pedidos</th>
+              <th>Volumes</th>
+              <th>Status</th>
+              <th>Situação</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="7" class="mini">Selecione um período</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:16px">
+  <div class="card">
+    <div class="card__bd">
+      <canvas id="graficoStatus"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__bd">
+      <canvas id="graficoAbertura"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <div class="card__bd">
+    <canvas id="graficoVolumes"></canvas>
+  </div>
+</div>
+
+  </div>
+
+  <script type="module">
+    import { requireAuthOrRedirect, bindAuthHeader } from "./js/auth.js";
+    requireAuthOrRedirect();
+    bindAuthHeader();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="js/relatorios.js"></script>
+</body>
+</html>
