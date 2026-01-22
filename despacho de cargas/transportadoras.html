@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Transportadoras • Despacho de Cargas</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="app.html"><span class="brand__dot"></span>Despacho de Cargas</a>
+      <div class="userline">
+        <span id="userName">—</span>
+        <a class="btn btn--ghost" href="app.html">Cargas</a>
+        <button class="btn" id="btnLogout">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card">
+        <div class="card__hd">
+          <div class="card__title">Cadastrar transportadora</div>
+          <span class="pill">Admin básico</span>
+        </div>
+        <div class="card__bd">
+          <form id="formT">
+            <div class="row">
+              <div class="field">
+                <div class="label">Código (número)</div>
+                <input class="input" id="codigo" type="number" min="1" required />
+              </div>
+              <div class="field">
+                <div class="label">Nome</div>
+                <input class="input" id="nome" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Ativa?</div>
+              <select class="select" id="ativo">
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+              </select>
+            </div>
+
+            <div class="toolbar">
+              <button class="btn btn--brand" type="submit" id="btnSalvarT">Salvar</button>
+              <button class="btn" type="button" id="btnLimparT">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__hd">
+          <div class="card__title">Transportadoras</div>
+          <div class="toolbar">
+            <input class="input" id="buscaT" placeholder="Buscar..." style="width:260px" />
+          </div>
+        </div>
+        <div class="card__bd">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Ativa</th>
+                <th>Criada por</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyT">
+              <tr><td colspan="5" class="mini">Carregando…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAuthOrRedirect, bindAuthHeader } from "./js/auth.js";
+    requireAuthOrRedirect();
+    bindAuthHeader();
+  </script>
+  <script type="module" src="js/transportadoras.js"></script>
+</body>
+</html>
