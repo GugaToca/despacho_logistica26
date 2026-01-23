@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Despacho de Cargas • Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="auth">
+    <div class="card authCard">
+      <div class="card__hd">
+        <div class="brand"><span class="brand__dot"></span>Despacho de Cargas</div>
+        <span class="pill">Firebase</span>
+      </div>
+      <div class="card__bd">
+        <div class="authTabs">
+          <button class="tab active" id="tabLogin">Entrar</button>
+          <button class="tab" id="tabCadastro">Criar conta</button>
+        </div>
+
+        <form id="formLogin">
+          <div class="field">
+            <div class="label">E-mail</div>
+            <input class="input" type="email" id="loginEmail" required />
+          </div>
+          <div class="field">
+            <div class="label">Senha</div>
+            <input class="input" type="password" id="loginSenha" required />
+          </div>
+          <button class="btn btn--brand" style="width:100%">Entrar</button>
+          <p class="mini" style="margin:10px 0 0">Dica: use um e-mail real. Todos os usuários conseguem ver as cargas.</p>
+        </form>
+
+        <form id="formCadastro" hidden>
+          <div class="field">
+            <div class="label">Seu nome</div>
+            <input class="input" type="text" id="cadNome" required />
+          </div>
+          <div class="field">
+            <div class="label">E-mail</div>
+            <input class="input" type="email" id="cadEmail" required />
+          </div>
+          <div class="field">
+            <div class="label">Senha</div>
+            <input class="input" type="password" id="cadSenha" minlength="6" required />
+          </div>
+          <button class="btn btn--brand" style="width:100%">Criar conta</button>
+          <p class="mini" style="margin:10px 0 0">A senha precisa ter no mínimo 6 caracteres (regra padrão do Firebase).</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>

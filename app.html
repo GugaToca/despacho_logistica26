@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Despacho de Cargas • Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="app.html"><span class="brand__dot"></span>Despacho de Cargas</a>
+      <div class="userline">
+        <span id="userName">—</span>
+        <a class="btn btn--ghost" href="transportadoras.html">Transportadoras</a>
+        <a class="btn btn--ghost" href="relatorios.html">Relatórios</a>
+        <button class="btn" id="btnLogout">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid">
+      <!-- Form Carga -->
+      <div class="card">
+        <div class="card__hd">
+          <div class="card__title">Nova carga</div>
+          <span class="pill">Criação</span>
+        </div>
+        <div class="card__bd">
+          <form id="formCarga">
+            <div class="row">
+              <div class="field">
+                <div class="label">Número da carga</div>
+                <input class="input" id="numero" placeholder="0001" />
+              </div>
+              <div class="field">
+                <div class="label">Transportadora</div>
+                <select class="select" id="transportadora" required>
+                  <option value="">Carregando...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <div class="label">Qtd. pedidos</div>
+                <input class="input" id="pedidos" type="number" min="0" value="0" required />
+              </div>
+              <div class="field">
+                <div class="label">Qtd. volumes</div>
+                <input class="input" id="volumes" type="number" min="0" value="0" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <div class="label">Status do despacho</div>
+                <select class="select" id="status" required>
+                  <option value="OK">OK (deu certo)</option>
+                  <option value="ERRO">ERRO (deu problema)</option>
+                </select>
+              </div>
+              <div class="field">
+                <div class="label">Situação da carga</div>
+                <select class="select" id="aberta" required>
+                  <option value="true">ABERTA (vermelho)</option>
+                  <option value="false">FECHADA (verde)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Observações</div>
+              <textarea class="textarea" id="observacoes" placeholder="Ex: divergência de volumes, reprocessado, etc."></textarea>
+            </div>
+
+            <div class="toolbar">
+              <button class="btn btn--brand" type="submit" id="btnSalvar">Salvar carga</button>
+              <button class="btn" type="button" id="btnLimpar">Limpar</button>
+            </div>
+
+            <p class="mini" style="margin-top:10px">
+              Dica: se não preencher o número, o sistema gera automaticamente (0001, 0002…).
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Lista -->
+      <div class="card">
+        <div class="card__hd">
+          <div class="card__title">Cargas</div>
+          <div class="toolbar">
+            <input class="input" id="busca" placeholder="Buscar por nº, transportadora, usuário…" style="width:260px" />
+            <select class="select" id="filtroAbertura" style="width:180px">
+              <option value="todas">Todas</option>
+              <option value="abertas">Abertas</option>
+              <option value="fechadas">Fechadas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card__bd">
+          <div class="kpi" id="kpis">
+            <div class="box"><div class="n" id="kpiTotal">0</div><div class="t">Total</div></div>
+            <div class="box"><div class="n" id="kpiAbertas">0</div><div class="t">Abertas</div></div>
+            <div class="box"><div class="n" id="kpiErro">0</div><div class="t">Com erro</div></div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>Transportadora</th>
+                <th>Pedidos</th>
+                <th>Volumes</th>
+                <th>Status</th>
+                <th>Aberta/Fechada</th>
+                <th>Criada por</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr><td colspan="8" class="mini">Carregando…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAuthOrRedirect, bindAuthHeader } from "./js/auth.js";
+    requireAuthOrRedirect();
+    bindAuthHeader();
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
