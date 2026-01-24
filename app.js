@@ -95,34 +95,59 @@ function render() {
   }
 
   tbody.innerHTML = list.map(c => {
-    const badgeStatus = c.status === "OK"
-      ? `<span class="badge"><span class="dot dot--ok"></span>OK</span>`
-      : `<span class="badge"><span class="dot dot--bad"></span>ERRO</span>`;
+  const badgeStatus = c.status === "OK"
+    ? `<span class="badge dot--ok">OK</span>`
+    : `<span class="badge dot--bad">ERRO</span>`;
 
-    const badgeAbertura = c.aberta
-      ? `<span class="badge"><span class="dot dot--bad"></span>ABERTA</span>`
-      : `<span class="badge"><span class="dot dot--ok"></span>FECHADA</span>`;
+  const badgeAbertura = c.aberta
+    ? `<span class="badge dot--bad">ABERTA</span>`
+    : `<span class="badge dot--ok">FECHADA</span>`;
 
-    return `
-      <tr class="tr">
-        <td><strong>${escapeHtml(c.numero || "")}</strong></td>
-        <td>${escapeHtml(c.transportadoraLabel || "")}</td>
-        <td>${Number(c.pedidos ?? 0)}</td>
-        <td>${Number(c.volumes ?? 0)}</td>
-        <td>${badgeStatus}</td>
-        <td>${badgeAbertura}</td>
-        <td>${escapeHtml(c.createdByName || "—")}</td>
-        <td>
-          <div class="toolbar">
-            <button class="btn btn--ok" data-action="toggle" data-id="${c.id}">
-              ${c.aberta ? "Fechar" : "Abrir"}
-            </button>
-            <button class="btn" data-action="edit" data-id="${c.id}">Editar</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }).join("");
+  return `
+    <tr class="tr">
+      <td data-label="Carga">${c.numero}</td>
+
+      <td data-label="Transportadora">
+        ${c.transportadoraLabel}
+      </td>
+
+      <td data-label="Pedidos">
+        ${Number(c.pedidos ?? 0)}
+      </td>
+
+      <td data-label="Volumes">
+        ${Number(c.volumes ?? 0)}
+      </td>
+
+      <td data-label="Status">
+        ${badgeStatus}
+      </td>
+
+      <td data-label="Situação">
+        ${badgeAbertura}
+      </td>
+
+      <td data-label="Ações">
+        <div class="toolbar">
+          <button
+            class="btn btn--ok"
+            data-action="toggle"
+            data-id="${c.id}">
+            ${c.aberta ? "Fechar" : "Abrir"}
+          </button>
+
+          <button
+            class="btn"
+            data-action="edit"
+            data-id="${c.id}">
+            Editar
+          </button>
+        </div>
+      </td>
+    </tr>
+  `;
+}).join("");
+
 }
 
 function fillForm(c) {

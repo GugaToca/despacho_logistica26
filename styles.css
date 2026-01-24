@@ -12,46 +12,41 @@
   --ok:#25d67b;
   --bad:#ff4d6d;
   --warn:#ffcc66;
-  --shadow: 0 12px 30px rgba(0,0,0,.35);
-  --radius: 16px;
+  --shadow:0 10px 25px rgba(0,0,0,.35);
+  --radius:14px;
 }
 
 /* =========================
-   RESET / BASE
+   RESET
 ========================= */
 *{box-sizing:border-box}
 html,body{height:100%}
-
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue";
-  background:
-    radial-gradient(1000px 600px at 20% 0%, rgba(110,168,255,.18), transparent 55%),
-    radial-gradient(900px 500px at 90% 30%, rgba(255,77,109,.10), transparent 60%),
-    var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:var(--bg);
   color:var(--text);
 }
 
-a{color:inherit;text-decoration:none}
-
 /* =========================
-   CONTAINER
+   BASE
 ========================= */
 .container{
   max-width:1200px;
   margin:0 auto;
-  padding:20px;
+  padding:16px;
 }
 
+a{text-decoration:none;color:inherit}
+
 /* =========================
-   TOPBAR
+   TOPBAR (COMPACTA)
 ========================= */
 .topbar{
   position:sticky;
   top:0;
-  z-index:30;
-  backdrop-filter: blur(10px);
-  background: rgba(11,18,32,.65);
+  z-index:50;
+  background:#0b1220;
   border-bottom:1px solid var(--line);
 }
 
@@ -59,30 +54,27 @@ a{color:inherit;text-decoration:none}
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
+  padding:10px 16px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
-  font-weight:800;
+  gap:8px;
+  font-weight:700;
+  font-size:15px;
 }
 
 .brand__dot{
-  width:12px;
-  height:12px;
-  border-radius:999px;
-  background: linear-gradient(135deg, var(--brand), #9a7bff);
-  box-shadow: 0 0 0 6px rgba(110,168,255,.12);
+  width:10px;height:10px;border-radius:50%;
+  background:var(--brand);
 }
 
 .userline{
   display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--muted);
-  font-size:14px;
+  gap:6px;
+  font-size:13px;
 }
 
 /* =========================
@@ -90,213 +82,383 @@ a{color:inherit;text-decoration:none}
 ========================= */
 .btn{
   border:1px solid var(--line);
-  background: rgba(255,255,255,.04);
+  background:#121c36;
   color:var(--text);
-  padding:10px 12px;
-  border-radius:12px;
-  cursor:pointer;
-  transition:.15s transform,.15s background;
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:13px;
 }
-.btn:hover{background: rgba(255,255,255,.07)}
-.btn:active{transform:translateY(1px)}
-.btn--brand{border-color: rgba(110,168,255,.35);background: rgba(110,168,255,.14)}
-.btn--ok{border-color: rgba(37,214,123,.35);background: rgba(37,214,123,.14)}
-.btn--bad{border-color: rgba(255,77,109,.35);background: rgba(255,77,109,.14)}
-.btn--ghost{background:transparent}
+.btn--brand{background:#1a2f55;border-color:#294b88}
+.btn--ok{background:#163d2c}
+.btn--bad{background:#3d1a23}
 
 /* =========================
-   GRID
+   GRID DESKTOP
 ========================= */
 .grid{
   display:grid;
-  grid-template-columns:320px 1fr;
+  grid-template-columns:340px 1fr;
   gap:16px;
   margin-top:16px;
-}
-@media (max-width:980px){
-  .grid{grid-template-columns:1fr}
 }
 
 /* =========================
    CARDS
 ========================= */
 .card{
-  background: linear-gradient(180deg, rgba(16,26,51,.95), rgba(16,26,51,.75));
+  background:#0f1730;
   border:1px solid var(--line);
   border-radius:var(--radius);
-  box-shadow:var(--shadow);
 }
 .card__hd{
-  padding:14px;
+  padding:12px;
   border-bottom:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
+  font-weight:700;
 }
-.card__title{font-weight:800}
-.card__bd{padding:14px}
+.card__bd{padding:12px}
 
 /* =========================
    FORM
 ========================= */
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  margin-bottom:12px;
-}
+.field{margin-bottom:10px}
 .label{font-size:12px;color:var(--muted)}
 .input,.select,.textarea{
   width:100%;
+  padding:10px;
+  border-radius:10px;
   border:1px solid var(--line);
-  background: rgba(255,255,255,.03);
+  background:#0b1220;
   color:var(--text);
-  padding:10px 12px;
-  border-radius:12px;
-  outline:none;
+  font-size:16px;
 }
-.textarea{min-height:90px}
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.textarea{min-height:70px}
+
+.toolbar{
+  display:flex;
+  gap:8px;
 }
-@media (max-width:520px){
-  .row{grid-template-columns:1fr}
-}
+.toolbar .btn{flex:1}
 
 /* =========================
-   TOOLBAR / PILLS
-========================= */
-.toolbar{display:flex;gap:10px;flex-wrap:wrap}
-.pills{display:flex;gap:8px;flex-wrap:wrap}
-.pill{
-  font-size:12px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,.03);
-  padding:7px 10px;
-  border-radius:999px;
-  color:var(--muted);
-}
-
-/* =========================
-   TABELA (DESKTOP)
+   LISTA / TABELA DESKTOP
 ========================= */
 .table{
   width:100%;
-  border-collapse:separate;
-  border-spacing:0 10px;
-}
-.tr{
-  background: rgba(255,255,255,.03);
-  border:1px solid var(--line);
+  border-collapse:collapse;
 }
 .table th{
   font-size:12px;
   color:var(--muted);
-  padding:0 10px 8px;
+  text-align:left;
+  padding:8px;
 }
 .table td{
-  padding:12px 10px;
+  padding:10px 8px;
   border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+  font-size:13px;
 }
 
 /* =========================
    BADGES
 ========================= */
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  border:1px solid var(--line);
-}
-.dot{width:8px;height:8px;border-radius:999px}
-.dot--ok{background:var(--ok)}
-.dot--bad{background:var(--bad)}
-
-/* =========================
-   KPIs
-========================= */
-.kpi{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-@media (max-width:520px){
-  .kpi{grid-template-columns:1fr 1fr}
-}
-
-/* =========================
-   LOGIN
-========================= */
-.auth{
-  min-height:100%;
-  display:grid;
-  place-items:center;
-  padding:20px;
-}
-.authCard{width:min(520px,100%)}
-
-/* =========================
-   TOAST
-========================= */
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:18px;
-  transform:translateX(-50%);
-  opacity:0;
-  padding:10px 12px;
+  font-size:11px;
+  padding:4px 8px;
   border-radius:999px;
   border:1px solid var(--line);
-  background: rgba(16,26,51,.95);
-  transition:.2s;
 }
-.toast.show{opacity:1}
 
 /* =========================
-   FIX iOS ZOOM
+   MOBILE REAL (AQUI RESOLVE)
+========================= */
+@media (max-width: 768px){
+
+  /* remove grid mental */
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  /* container mais denso */
+  .container{
+    padding:10px;
+  }
+
+  /* header compacto */
+  .topbar__inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .userline{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  /* cards colapsados */
+  .card{
+    border-radius:12px;
+  }
+
+  .card__hd{
+    font-size:14px;
+  }
+
+  /* FORM MAIS ENXUTO */
+  .field{
+    margin-bottom:8px;
+  }
+
+  .table tbody,
+  .table tr{
+    display:block;
+  }
+
+  .table tr{
+    background:#0f1730;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:10px;
+  }
+
+  .table td{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border:none;
+    font-size:14px;
+  }
+
+  .table td:last-child{
+    margin-top:8px;
+  }
+
+  .table td::before{
+    content:attr(data-label);
+    color:var(--muted);
+    font-size:12px;
+  }
+}
+
+/* =========================
+   iOS FIX
 ========================= */
 input,select,textarea,button{
   font-size:16px;
 }
 
 /* =========================
-   MOBILE (REAL)
+   MOBILE — LISTA VISÍVEL E LEGÍVEL
 ========================= */
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-  body{font-size:16px}
-
-  .container{padding:12px}
-
-  .topbar__inner{
-    flex-direction:column;
-    align-items:stretch;
+  /* mantém a tabela VISÍVEL */
+  .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
   }
 
-  .userline{
-    justify-content:space-between;
-    font-size:13px;
+  .table thead {
+    display: none; /* só o cabeçalho some */
   }
 
-  .card__hd{
-    flex-direction:column;
-    align-items:flex-start;
+  .table tbody,
+  .table tr {
+    display: block;
+    width: 100%;
   }
 
-  .btn{
-    padding:12px;
+  .table tr {
+    background: #0f1730;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 12px;
   }
 
-  /* tabela vira scroll */
-  .table{
-    display:block;
-    overflow-x:auto;
-    white-space:nowrap;
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+  }
+
+  .table td:last-child {
+    margin-top: 10px;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 12px;
+    margin-right: 10px;
+  }
+}
+
+
+/* =========================
+   MOBILE – CARDS DE CARGA (UX MELHORADO)
+========================= */
+@media (max-width: 768px) {
+
+  .table tbody tr {
+    background: linear-gradient(
+      180deg,
+      rgba(16,26,51,.95),
+      rgba(16,26,51,.75)
+    );
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.35);
+  }
+
+  /* Cada linha vira bloco */
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  /* Rótulo */
+  .table td::before {
+    content: attr(data-label);
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Número da carga (1ª linha) */
+  .table td:first-child {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .table td:first-child::before {
+    content: "Carga";
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Status / Situação */
+  .badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  /* Linha dos botões */
+  .table td:last-child {
+    margin-top: 12px;
+    gap: 10px;
+  }
+
+  .table td:last-child .toolbar {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+
+  .table td:last-child .btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+}
+
+/* =========================
+   MOBILE – CARD PADRÃO PROFISSIONAL
+========================= */
+@media (max-width: 768px) {
+
+  .table tbody tr {
+    background: linear-gradient(
+      180deg,
+      rgba(16,26,51,.98),
+      rgba(16,26,51,.82)
+    );
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 10px 22px rgba(0,0,0,.35);
+  }
+
+  /* reset visual */
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+  }
+
+  /* ---------- HEADER DO CARD ---------- */
+  .table td:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .table td:first-child::before {
+    content: "Carga";
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  /* ---------- TRANSPORTADORA ---------- */
+  .table td[data-label="Transportadora"] {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  /* ---------- BLOCO DE MÉTRICAS ---------- */
+  .table td[data-label="Pedidos"],
+  .table td[data-label="Volumes"] {
+    background: rgba(255,255,255,.04);
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* ---------- STATUS ---------- */
+  .badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+
+  /* ---------- AÇÕES ---------- */
+  .table td:last-child {
+    margin-top: 14px;
+  }
+
+  .table td:last-child .toolbar {
+    display: flex;
+    gap: 12px;
+  }
+
+  .table td:last-child .btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 14px;
   }
 }
