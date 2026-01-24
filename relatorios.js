@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { toast } from ".ui.js";
+import { toast } from "./ui.js";
 
 import {
   collection,

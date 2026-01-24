@@ -1,6 +1,6 @@
-// js/login.js
-import { login, register } from ".auth.js";
-import { toast } from ".ui.js";
+//login.js
+import { login, register } from "./auth.js";
+import { toast } from "./ui.js";
 
 const $ = (s) => document.querySelector(s);
 
