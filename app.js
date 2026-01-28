@@ -171,15 +171,17 @@ function fillForm(c) {
 
 function clearForm() {
   form.reset();
+  $("#numero").value = "";
+  $("#rota").value = "";          // 👈 AQUI (linha que você perguntou)
   $("#pedidos").value = 0;
   $("#volumes").value = 0;
   $("#status").value = "OK";
   $("#aberta").value = "true";
-  $("#numero").value = "";
   $("#observacoes").value = "";
   form.dataset.editing = "";
   $("#btnSalvar").textContent = "Salvar carga";
 }
+
 
 async function upsertCarga(payload) {
   const user = auth.currentUser;
@@ -261,10 +263,13 @@ form.addEventListener("submit", async (e) => {
   if (!numero) numero = await getNextNumero();
   numero = pad4(parseInt(numero.replace(/\D/g,"") || "0", 10) || numero);
 
+  const rota = document.querySelector("#rota").value.trim();
+
   const payload = {
     numero,
     transportadoraId: t.id,
     transportadoraLabel: `${t.codigo} - ${t.nome}`,
+    rota,
     pedidos: Number($("#pedidos").value || 0),
     volumes: Number($("#volumes").value || 0),
     status: $("#status").value === "ERRO" ? "ERRO" : "OK",
