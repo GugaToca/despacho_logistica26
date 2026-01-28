@@ -127,6 +127,11 @@ function render() {
         ${badgeAbertura}
       </td>
 
+      <td data-label="Criada por">
+  ${c.createdByName || "—"}
+</td>
+
+
       <td data-label="Ações">
         <div class="toolbar">
           <button

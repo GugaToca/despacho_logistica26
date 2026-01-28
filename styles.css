@@ -1,19 +1,27 @@
 /* =========================
-   VARIÁVEIS
+   DESIGN SYSTEM — MODERNO
 ========================= */
 :root{
-  --bg:#0b1220;
-  --panel:#101a33;
-  --panel2:#0f1730;
-  --text:#e8eefc;
-  --muted:#9bb0da;
-  --line:rgba(255,255,255,.08);
+  --bg:#0b1020;
+  --bg-soft:#101735;
+  --panel:#151c3f;
+  --panel-soft:#1b2455;
+
+  --text:#f2f4ff;
+  --muted:#9aa3d1;
+
   --brand:#6ea8ff;
   --ok:#25d67b;
   --bad:#ff4d6d;
   --warn:#ffcc66;
-  --shadow:0 10px 25px rgba(0,0,0,.35);
-  --radius:14px;
+
+  --line:rgba(255,255,255,.08);
+
+  --radius:16px;
+  --radius-sm:12px;
+
+  --shadow-soft:0 8px 20px rgba(0,0,0,.35);
+  --shadow-strong:0 14px 40px rgba(0,0,0,.45);
 }
 
 /* =========================
@@ -23,8 +31,8 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:var(--bg);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:radial-gradient(1200px 600px at 10% -10%, #162055 0%, var(--bg) 55%);
   color:var(--text);
 }
 
@@ -32,49 +40,48 @@ body{
    BASE
 ========================= */
 .container{
-  max-width:1200px;
+  max-width:1300px;
   margin:0 auto;
-  padding:16px;
+  padding:20px;
 }
 
 a{text-decoration:none;color:inherit}
 
 /* =========================
-   TOPBAR (COMPACTA)
+   TOPBAR
 ========================= */
 .topbar{
   position:sticky;
   top:0;
-  z-index:50;
-  background:#0b1220;
+  z-index:90;
+  background:rgba(11,16,32,.85);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 
-.topbar__inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 16px;
-}
 
 .brand{
   display:flex;
   align-items:center;
-  gap:8px;
-  font-weight:700;
-  font-size:15px;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.3px;
 }
 
 .brand__dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--brand);
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--brand),#9a7bff);
+  box-shadow:0 0 12px rgba(110,168,255,.6);
 }
 
 .userline{
   display:flex;
-  gap:6px;
+  align-items:center;
+  gap:8px;
   font-size:13px;
+  color:var(--muted);
 }
 
 /* =========================
@@ -82,108 +89,175 @@ a{text-decoration:none;color:inherit}
 ========================= */
 .btn{
   border:1px solid var(--line);
-  background:#121c36;
+  background:linear-gradient(180deg,#1c265f,#151c3f);
   color:var(--text);
-  padding:8px 10px;
-  border-radius:10px;
+  padding:10px 14px;
+  border-radius:12px;
   font-size:13px;
+  cursor:pointer;
+  transition:.2s;
 }
-.btn--brand{background:#1a2f55;border-color:#294b88}
-.btn--ok{background:#163d2c}
-.btn--bad{background:#3d1a23}
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:var(--shadow-soft);
+}
+
+.btn--brand{
+  background:linear-gradient(135deg,var(--brand),#9a7bff);
+  border:none;
+  color:#081126;
+  font-weight:700;
+}
+
+.btn--ok{background:linear-gradient(135deg,#25d67b,#1fbf6a);border:none}
+.btn--bad{background:linear-gradient(135deg,#ff4d6d,#ff6f86);border:none}
+
+.btn--ghost{
+  background:transparent;
+}
 
 /* =========================
-   GRID DESKTOP
+   GRID
 ========================= */
 .grid{
   display:grid;
-  grid-template-columns:340px 1fr;
-  gap:16px;
-  margin-top:16px;
+  grid-template-columns:360px 1fr;
+  gap:18px;
+  margin-top:18px;
 }
 
 /* =========================
    CARDS
 ========================= */
 .card{
-  background:#0f1730;
+  background:linear-gradient(180deg,var(--panel),var(--panel-soft));
   border:1px solid var(--line);
   border-radius:var(--radius);
+  box-shadow:var(--shadow-soft);
 }
+
 .card__hd{
-  padding:12px;
+  padding:14px 16px;
   border-bottom:1px solid var(--line);
-  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-weight:800;
+  letter-spacing:.2px;
 }
-.card__bd{padding:12px}
+
+.card__bd{
+  padding:16px;
+}
 
 /* =========================
    FORM
 ========================= */
-.field{margin-bottom:10px}
-.label{font-size:12px;color:var(--muted)}
+.field{margin-bottom:12px}
+.label{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
 .input,.select,.textarea{
   width:100%;
-  padding:10px;
-  border-radius:10px;
+  padding:12px;
+  border-radius:12px;
   border:1px solid var(--line);
-  background:#0b1220;
+  background:#0b1020;
   color:var(--text);
-  font-size:16px;
+  font-size:15px;
 }
-.textarea{min-height:70px}
+
+.input:focus,.select:focus,.textarea:focus{
+  outline:none;
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(110,168,255,.15);
+}
+
+.textarea{min-height:80px}
 
 .toolbar{
   display:flex;
-  gap:8px;
+  gap:10px;
 }
-.toolbar .btn{flex:1}
 
 /* =========================
-   LISTA / TABELA DESKTOP
+   KPI
+========================= */
+.kpi{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+}
+
+.kpi .box{
+  background:linear-gradient(180deg,#121944,#0d1333);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:var(--shadow-soft);
+}
+
+.kpi .n{
+  font-size:22px;
+  font-weight:900;
+}
+
+.kpi .t{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* =========================
+   TABLE / LIST
 ========================= */
 .table{
   width:100%;
   border-collapse:collapse;
 }
+
 .table th{
+  text-align:left;
   font-size:12px;
   color:var(--muted);
-  text-align:left;
-  padding:8px;
+  padding:10px;
 }
+
 .table td{
-  padding:10px 8px;
+  padding:12px 10px;
   border-top:1px solid var(--line);
-  font-size:13px;
+  font-size:14px;
 }
 
 /* =========================
    BADGES
 ========================= */
 .badge{
-  font-size:11px;
-  padding:4px 8px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 12px;
+  font-size:12px;
   border-radius:999px;
-  border:1px solid var(--line);
+  font-weight:700;
 }
 
+.dot--ok{background:var(--ok);color:#052915}
+.dot--bad{background:var(--bad);color:#2b050d}
+
 /* =========================
-   MOBILE REAL (AQUI RESOLVE)
+   MOBILE — PRESERVADO
 ========================= */
+@media (max-width: 900px){
+  .grid{grid-template-columns:1fr}
+}
+
 @media (max-width: 768px){
 
-  /* remove grid mental */
-  .grid{
-    grid-template-columns:1fr;
-  }
+  .container{padding:12px}
 
-  /* container mais denso */
-  .container{
-    padding:10px;
-  }
-
-  /* header compacto */
   .topbar__inner{
     flex-direction:column;
     align-items:flex-start;
@@ -194,19 +268,7 @@ a{text-decoration:none;color:inherit}
     justify-content:space-between;
   }
 
-  /* cards colapsados */
-  .card{
-    border-radius:12px;
-  }
-
-  .card__hd{
-    font-size:14px;
-  }
-
-  /* FORM MAIS ENXUTO */
-  .field{
-    margin-bottom:8px;
-  }
+  .table thead{display:none}
 
   .table tbody,
   .table tr{
@@ -214,11 +276,12 @@ a{text-decoration:none;color:inherit}
   }
 
   .table tr{
-    background:#0f1730;
+    background:linear-gradient(180deg,#121944,#0d1333);
     border:1px solid var(--line);
-    border-radius:12px;
-    padding:10px;
-    margin-bottom:10px;
+    border-radius:18px;
+    padding:14px;
+    margin-bottom:14px;
+    box-shadow:var(--shadow-strong);
   }
 
   .table td{
@@ -226,17 +289,18 @@ a{text-decoration:none;color:inherit}
     justify-content:space-between;
     padding:6px 0;
     border:none;
-    font-size:14px;
-  }
-
-  .table td:last-child{
-    margin-top:8px;
   }
 
   .table td::before{
     content:attr(data-label);
-    color:var(--muted);
     font-size:12px;
+    color:var(--muted);
+  }
+
+  .table td:first-child{
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:8px;
   }
 }
 
@@ -248,217 +312,160 @@ input,select,textarea,button{
 }
 
 /* =========================
-   MOBILE — LISTA VISÍVEL E LEGÍVEL
+   LOGIN — MOBILE FIRST
 ========================= */
-@media (max-width: 768px) {
 
-  /* mantém a tabela VISÍVEL */
-  .table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
+.auth{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.authCard{
+  width:100%;
+  max-width:420px;
+}
+
+/* MOBILE REAL */
+@media (max-width: 768px){
+
+  body{
+    background:linear-gradient(180deg,#0b1020,#101735);
   }
 
-  .table thead {
-    display: none; /* só o cabeçalho some */
+  .auth{
+    padding:0;
+    align-items:stretch;
   }
 
-  .table tbody,
-  .table tr {
-    display: block;
-    width: 100%;
+  .authCard{
+    max-width:100%;
+    min-height:100vh;
+    border-radius:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:24px 20px;
   }
 
-  .table tr {
-    background: #0f1730;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px;
-    margin-bottom: 12px;
+  .authTabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
   }
 
-  .table td {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border: none;
-    font-size: 14px;
+  .authTabs .tab{
+    flex:1;
+    padding:14px;
+    font-size:14px;
+    border-radius:12px;
   }
 
-  .table td:last-child {
-    margin-top: 10px;
+  .authCard .btn{
+    padding:14px;
+    font-size:15px;
+    border-radius:14px;
   }
 
-  .table td::before {
-    content: attr(data-label);
-    color: var(--muted);
-    font-size: 12px;
-    margin-right: 10px;
+  .authCard .input{
+    padding:14px;
+    font-size:16px;
+    border-radius:14px;
+  }
+
+  .authCard .label{
+    font-size:13px;
+  }
+
+}
+
+/* =========================
+   FIX — ALINHAMENTO HEADER x CONTEÚDO
+========================= */
+
+/* remove qualquer padding duplicado */
+.topbar{
+  padding:0;
+}
+
+
+.topbar__inner{
+  max-width:1300px;
+  margin:0 auto;
+  padding:12px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+/* =========================
+   AJUSTE FINO — ENCAIXE VISUAL
+========================= */
+
+/* garante continuidade visual entre header e conteúdo */
+.topbar + .container{
+  padding-top:16px;
+}
+
+/* reduz ligeiramente a altura do header */
+.topbar__inner{
+  min-height:56px;
+}
+
+/* mobile: header mais compacto */
+@media (max-width: 768px){
+  .topbar__inner{
+    min-height:auto;
+    padding:10px 14px;
   }
 }
 
 
 /* =========================
-   MOBILE – CARDS DE CARGA (UX MELHORADO)
+   FIX DEFINITIVO — HEADER
 ========================= */
-@media (max-width: 768px) {
 
-  .table tbody tr {
-    background: linear-gradient(
-      180deg,
-      rgba(16,26,51,.95),
-      rgba(16,26,51,.75)
-    );
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 14px;
-    margin-bottom: 14px;
-    box-shadow: 0 8px 18px rgba(0,0,0,.35);
-  }
+/* quando container está dentro do topbar, remove padding */
+.topbar .container{
+  padding-left: 0;
+  padding-right: 0;
+}
 
-  /* Cada linha vira bloco */
-  .table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
-    font-size: 14px;
-  }
-
-  /* Rótulo */
-  .table td::before {
-    content: attr(data-label);
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  /* Número da carga (1ª linha) */
-  .table td:first-child {
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 8px;
-  }
-
-  .table td:first-child::before {
-    content: "Carga";
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  /* Status / Situação */
-  .badge {
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 999px;
-  }
-
-  /* Linha dos botões */
-  .table td:last-child {
-    margin-top: 12px;
-    gap: 10px;
-  }
-
-  .table td:last-child .toolbar {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-  }
-
-  .table td:last-child .btn {
-    flex: 1;
-    padding: 12px;
-    font-size: 14px;
-    border-radius: 12px;
-  }
+/* padding passa a ser controlado APENAS pelo topbar__inner */
+.topbar__inner{
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* =========================
-   MOBILE – CARD PADRÃO PROFISSIONAL
+   FIX — ALINHAMENTO NOME DO USUÁRIO (MOBILE)
 ========================= */
-@media (max-width: 768px) {
+/* =========================
+   FIX FINAL — HEADER MOBILE
+========================= */
 
-  .table tbody tr {
-    background: linear-gradient(
-      180deg,
-      rgba(16,26,51,.98),
-      rgba(16,26,51,.82)
-    );
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 14px;
-    margin-bottom: 16px;
-    box-shadow: 0 10px 22px rgba(0,0,0,.35);
+@media (max-width: 768px){
+
+  /* header e conteúdo compartilham o mesmo eixo */
+  .topbar__inner{
+    padding-left: 22px;
+    padding-right: 42px;
   }
 
-  /* reset visual */
-  .table td {
-    display: flex;
+  .container{
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* userline ocupa a largura mas respeita o eixo */
+  .userline{
+    width: 100%;
     justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
-    border: none;
-    font-size: 14px;
   }
 
-  /* ---------- HEADER DO CARD ---------- */
-  .table td:first-child {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 8px;
-  }
-
-  .table td:first-child::before {
-    content: "Carga";
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-    margin-right: 6px;
-  }
-
-  /* ---------- TRANSPORTADORA ---------- */
-  .table td[data-label="Transportadora"] {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  /* ---------- BLOCO DE MÉTRICAS ---------- */
-  .table td[data-label="Pedidos"],
-  .table td[data-label="Volumes"] {
-    background: rgba(255,255,255,.04);
-    padding: 8px 10px;
-    border-radius: 12px;
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
-
-  /* ---------- STATUS ---------- */
-  .badge {
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-weight: 700;
-  }
-
-  /* ---------- AÇÕES ---------- */
-  .table td:last-child {
-    margin-top: 14px;
-  }
-
-  .table td:last-child .toolbar {
-    display: flex;
-    gap: 12px;
-  }
-
-  .table td:last-child .btn {
-    flex: 1;
-    padding: 12px;
-    font-size: 14px;
-    border-radius: 14px;
-  }
 }
+
