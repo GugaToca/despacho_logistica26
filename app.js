@@ -108,9 +108,15 @@ const badgeAbertura = c.aberta
     <tr class="tr">
       <td data-label="Carga">${c.numero}</td>
 
-      <td data-label="Transportadora">
-        ${c.transportadoraLabel}
-      </td>
+    <td data-label="Transportadora">
+    ${c.transportadoraLabel}
+    </td>
+
+    <td data-label="Rota">
+    ${c.rota || "—"}
+    </td>
+
+
 
       <td data-label="Pedidos">
         ${Number(c.pedidos ?? 0)}

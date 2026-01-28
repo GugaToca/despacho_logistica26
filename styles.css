@@ -394,3 +394,39 @@ textarea{min-height:88px; resize:vertical}
   background: rgba(192, 11, 44, 0.651);
   color: #ffc2cd;
 }
+
+/* =========================
+   CARD — TRANSPORTADORA + ROTA
+========================= */
+
+.card-meta{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.card-meta .meta-main{
+  font-weight:900;
+  font-size:14px;
+  color:var(--text);
+}
+
+.card-meta .meta-sub{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* =========================
+   AJUSTE FINO — ALINHAMENTO ROTA
+========================= */
+
+.card-meta{
+  align-items: flex-start; /* força mesmo eixo */
+}
+
+.card-meta .meta-main,
+.card-meta .meta-sub{
+  padding-left: 0;
+  margin-left: 0;
+  text-align: left;
+}

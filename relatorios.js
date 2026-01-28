@@ -150,14 +150,16 @@ function renderTabela(cargas) {
   }
 
   tbody.innerHTML = cargas.map(c => `
-    <tr class="tr">
-      <td><strong>${c.numero}</strong></td>
-      <td>${c.transportadoraLabel}</td>
-      <td>${c.pedidos}</td>
-      <td>${c.volumes}</td>
-      <td>${c.status}</td>
-      <td>${c.aberta ? "ABERTA" : "FECHADA"}</td>
-      <td>${c.createdAt?.toDate().toLocaleDateString()}</td>
-    </tr>
-  `).join("");
+  <tr class="tr">
+    <td><strong>${c.numero}</strong></td>
+    <td>${c.transportadoraLabel}</td>
+    <td>${c.rota || "—"}</td>   <!-- 👈 ROTA AQUI -->
+    <td>${c.pedidos}</td>
+    <td>${c.volumes}</td>
+    <td>${c.status}</td>
+    <td>${c.aberta ? "ABERTA" : "FECHADA"}</td>
+    <td>${c.createdAt?.toDate().toLocaleDateString()}</td>
+  </tr>
+`).join("");
+
 }
