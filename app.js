@@ -96,12 +96,13 @@ function render() {
 
   tbody.innerHTML = list.map(c => {
   const badgeStatus = c.status === "OK"
-    ? `<span class="badge dot--ok">OK</span>`
-    : `<span class="badge dot--bad">ERRO</span>`;
+  ? `<span class="badge badge--ok">OK</span>`
+  : `<span class="badge badge--bad">ERRO</span>`;
 
-  const badgeAbertura = c.aberta
-    ? `<span class="badge dot--bad">ABERTA</span>`
-    : `<span class="badge dot--ok">FECHADA</span>`;
+const badgeAbertura = c.aberta
+  ? `<span class="badge badge--bad">ABERTA</span>`
+  : `<span class="badge badge--ok">FECHADA</span>`;
+
 
   return `
     <tr class="tr">
